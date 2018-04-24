@@ -77,9 +77,9 @@ def search_documents(s):
             for hit in results:
                 results_search.append(hit['title'])
             return results_search
-
-def search_index_main():
-    question_input = input('Nhập câu hỏi của bạn: ')
+#GUI
+def search_index_main(query):
+    question_input = query
     question_input = re.sub(r"(\s{2,})", '', question_input)
     tokens = word_separation(question_input)
     s = clearn_stop_word(tokens)
@@ -87,8 +87,16 @@ def search_index_main():
     results_search_main = search_documents(s)
     return results_search_main
 
+def search_index_main01():
+    question_input = input('Nhập câu hỏi của bạn: ')
+    question_input = re.sub(r"(\s{2,})", '', question_input)
+    tokens = word_separation(question_input)
+    s = clearn_stop_word(tokens)
+    # indexing()
+    results_search_main = search_documents(s)
+    return results_search_main
 if __name__ == '__main__':
-    kq = search_index_main()
+    kq = search_index_main01()
     if kq == 0:
         print("Không có kết quả phù hợp với câu hỏi!")
     else:
@@ -99,5 +107,5 @@ if __name__ == '__main__':
             else:
                 print(kq[j])
 
-# Cho em hỏi . em thi rớt đại học , em sẽ có 3 giấy báo điểm , em sử dụng 3 giấy báo điểm ấy đăng ký nguyện vọng 2 vào 3 trường khác nhau được không ạ
-#Quy chế tuyển sinh 2017 vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
+
+#Quy chế tuyển sinh Đại học, Cao đẳng năm 2018 ?

@@ -55,7 +55,7 @@ class SelTSHS:
 
 
 if __name__ == '__main__':
-    chrome_path = r"D:\chromedriver_win32\chromedriver.exe"
+    chrome_path = r"../chromedriver"
     chrome_opptions = webdriver.ChromeOptions()
     chrome_opptions.add_argument("--incognito")
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_opptions)

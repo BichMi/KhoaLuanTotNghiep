@@ -123,14 +123,12 @@ def choose_document(cosin):
         kq_choose.append(rs[i_of_rs])
         i_of_rs += 1
     return kq_choose
+
 def print_document(choose_doc):
     for i in choose_doc:
         for j in i:
             print(j)
-
-if __name__ == '__main__':
-    #Quy chế tuyển sinh 2017 vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
-    # Cho em hỏi là điểm thi đại học của em dưới điểm sàn thì có được nộp nguyện vọng 2 vào các trường cao đẳng không ?
+def output():
     results = search_index.search_index_main()
     if results == 0:
         print("Không có kết quả phù hợp với câu hỏi!")
@@ -141,7 +139,7 @@ if __name__ == '__main__':
             else:
                 print(results[j])
     else:
-        print('Số lượng document sau khi tìm kiếm là: %d' %(len(results) - 1))
+        print('Số lượng document sau khi tìm kiếm là: %d' % (len(results) - 1))
         print(results)
         kq_set, data_out, kq_for_tfi = format_data(results)
         print('kq_set')
@@ -169,3 +167,33 @@ if __name__ == '__main__':
         choose_doc = choose_document(cosin)
         print('Các Document được chọn là: ')
         print_document(choose_doc)
+#GUI
+def format_output(query):
+    results = search_index.search_index_main(query)
+    if results == 0:
+        print("Không có kết quả phù hợp với câu hỏi!")
+        return 0
+    elif len(results) <= 2:
+        for j in range(len(results)):
+            if j == 0:
+                print('Tiền xử lý câu truy vấn: ', results[j])
+            else:
+                print(results[j])
+    else:
+        print('Số lượng document sau khi tìm kiếm là: %d' % (len(results) - 1))
+        print(results)
+        kq_set, data_out, kq_for_tfi = format_data(results)
+        tfi = calculated_tfi(kq_set, kq_for_tfi)
+        dfi = calculated_dfi(tfi)
+        idfi = calculated_idfi(dfi, data_out)
+        wi = calculated_wi(idfi, tfi)
+        cosin = similarity(wi, results)
+        choose_doc = choose_document(cosin)
+        print('Các Document được chọn là: ')
+        print_document(choose_doc)
+        return choose_doc
+
+if __name__ == '__main__':
+    #Quy chế tuyển sinh 2017 vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
+    # Cho em hỏi là điểm thi đại học của em dưới điểm sàn thì có được nộp nguyện vọng 2 vào các trường cao đẳng không ?
+    output()

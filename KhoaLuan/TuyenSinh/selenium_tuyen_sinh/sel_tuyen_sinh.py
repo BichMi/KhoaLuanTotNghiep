@@ -22,8 +22,8 @@ class SelTuyenSinh:
         driver.find_element_by_id("tli_1").click()#click Điểm chuẩn, nguyện vọng
         client = MongoClient('mongodb://localhost:27017/')#kết nối MongoDB
         db = client.DBTuyenSinh  # tao ket noi tới DB
-        # collection = db.AnswerQuestion
-        collection = db.TMP
+        collection = db.AnswerQuestion
+
         for i in range(1, 11):
             time.sleep(5)
             print("Page: " + str(i))
@@ -66,8 +66,8 @@ class SelTuyenSinh:
         driver.get("https://bigschool.vn/hoi-dap-ve-quy-che-tuyen-sinh-2017")
         client = MongoClient('mongodb://localhost:27017/')  # kết nối DB
         db = client.DBTuyenSinh  # tao ket noi tới DB
-        # collection = db.AnswerQuestion
-        collection = db.TMP
+        collection = db.AnswerQuestion
+
         first_questions = driver.find_elements_by_css_selector("div.cct-text-read > div.des > p")#lấy câu hỏi đầu tiên
         source = driver.find_elements_by_class_name("ExternalClass0C7C753CD6524B6EB1708DFBCB2C3915")#lấy toàn bộ câu trả lời lẫn câu hỏi còn lại
         list_questions = []#danh sách câu hỏi
