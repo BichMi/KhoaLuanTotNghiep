@@ -31,5 +31,10 @@
     <li>pip install underthesea</li>
     <li>https://pypi.python.org/pypi/underthesea</li>
     </ul>
+  <li>tkinter</li>
+    <ul>
+    <li>sudo apt-get install python3-tk</li>
+    <li>https://docs.python.org/3/library/tk.html</li>
+    </ul>
   </ul>
  
