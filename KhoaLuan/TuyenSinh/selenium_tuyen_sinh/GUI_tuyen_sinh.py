@@ -12,40 +12,47 @@ def search():
     outputLb.delete('1.0', END)
     if kq == 0:
         outputLb.insert(END, "Không có kết quả phù hợp\n")
+
+    elif len(kq) <= 2:
+        for k in kq:
+            for h in k:
+                outputLb.insert(END, h)
+                outputLb.insert(END, '\n')
     else:
         a = kq
         for i in a:
             for j in i:
                 outputLb.insert(END, j)
+                outputLb.insert(END, '\n')
 
 
 
 root = Tk()
-root.geometry("800x500+300+100")
+root.geometry("750x500+300+100")
 root.config(background="#63DDBF")
 root.title("Hệ thống tư vấn tuyển sinh tự động")
 
 
 questionLab = Label(root, text='Hệ thống tư vấn tuyển sinh tự động\n', font=('Arial', 15, 'bold', 'italic'), background="#63DDBF")
-questionLab.grid(row=0, column=2)
+questionLab.grid(row=0, column=8, columnspan=9)
 
 questionText = StringVar()
 el = Entry(root, textvariable=questionText, width=50)
-el.grid(row=1, column=2)
+el.grid(row=1, column=6, columnspan=12)
 
 
 quitButton = Button(root, text="TRẢ LỜI", width=12, command=search)
 
-quitButton.grid(row=3, column=2)
+quitButton.grid(row=3, column=11)
 
 outputLb = Text(root, height=18)
-outputLb.grid(column=1, columnspan=3, row=4, rowspan=6,  sticky='W')
+outputLb.grid(column=1, columnspan=22, row=4, rowspan=6,  sticky='W')
 
-scrollbar = Scrollbar(root, orient=VERTICAL) # height= not permitted here!
-outputLb.config(yscrollcommand=scrollbar.set, font=('Arial', 13, 'bold', 'italic'))
+scrollbar = Scrollbar(root, orient=VERTICAL)
+outputLb.config(yscrollcommand=scrollbar.set, font=('Arial', 13))
 scrollbar.config(command=outputLb.yview)
 
-scrollbar.grid(row=4, column=7, rowspan=6,  sticky='W')
+scrollbar.grid(row=4, column=23, rowspan=6,  sticky='W')
 
 outputLb.insert(END, "")
 

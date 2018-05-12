@@ -40,18 +40,18 @@ class SelTSHS:
                 list_dates.append(date)
                 driver.back()
             index_page += 1
-        client = MongoClient('mongodb://localhost:27017/')  # kết nối MongoDB
-        db = client.DBTuyenSinh  # tao ket noi tới DB
-        collection = db.AnswerQuestion
-        for question, answer, date in zip(list_questions, list_answers, list_dates):
-            print("********Câu hỏi:******\n\t" + question)
-            question = sd.format_word(question)
-            print("********Tiền xử lý câu hỏi :******\n\t" + question)
-            print("********Trả lời:******\n\t" + answer)
-            answer = sd.format_word(answer)
-            print("********Tiền xử lý trả lời:******\n\t" + answer)
-            print(date)
-            document = collection.insert([{"questions": question, "answers": answer, "dates": date}])
+        # client = MongoClient('mongodb://localhost:27017/')  # kết nối MongoDB
+        # db = client.DBTuyenSinh  # tao ket noi tới DB
+        # collection = db.AnswerQuestion
+        # for question, answer, date in zip(list_questions, list_answers, list_dates):
+        #     print("********Câu hỏi:******\n\t" + question)
+        #     question = sd.format_word(question)
+        #     print("********Tiền xử lý câu hỏi :******\n\t" + question)
+        #     print("********Trả lời:******\n\t" + answer)
+        #     answer = sd.format_word(answer)
+        #     print("********Tiền xử lý trả lời:******\n\t" + answer)
+        #     print(date)
+        #     document = collection.insert([{"questions": question, "answers": answer, "dates": date}])
 
 
 if __name__ == '__main__':
