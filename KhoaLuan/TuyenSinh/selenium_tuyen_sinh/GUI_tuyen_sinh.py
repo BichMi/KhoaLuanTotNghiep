@@ -19,11 +19,14 @@ def search():
                 outputLb.insert(END, h)
                 outputLb.insert(END, '\n')
     else:
-        a = kq
-        for i in a:
-            for j in i:
-                outputLb.insert(END, j)
-                outputLb.insert(END, '\n')
+        for i in range(len(kq)):
+            for j in range(len(kq[i])):
+                if j == 1:
+                    outputLb.insert(END, kq[i][j])
+                    outputLb.insert(END, '\n')
+                else:
+                    outputLb.insert(END, kq[i][j][1])
+                    outputLb.insert(END, '\n')
 
 
 

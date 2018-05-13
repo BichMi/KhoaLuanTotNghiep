@@ -122,7 +122,7 @@ def search_index_main01():
     s = clearn_stop_word(tokens)
     print('**************************')
     print(s)
-    indexing()
+    # indexing()
     results_search_main = search_documents(s)
     return results_search_main
 

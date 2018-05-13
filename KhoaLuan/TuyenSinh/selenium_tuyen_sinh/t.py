@@ -16,32 +16,32 @@ def format_data(search_index_results):
     kq_for_tfi = []
     data_out = [] # mảng lưu  tài liệu kể cả q
     kq = []  # mảng lưu các từ đã tách của tất cả các tài liệu
+    data_out.append(search_index_results[0][0])
     for i in range(len(search_index_results)):
         for j in range(len(search_index_results[i])):
-            print(search_index_results[i][j])
             if j % 2 == 0:
-                print("**********j%2 == 0")
-                print(search_index_results[i][j])
+                # print("**********j%2 == 0")
+                # print(search_index_results[i][j])
                 i_search_index_results = search_index.word_separation(search_index_results[i][j])  # tách từ thành list
                 i_search_index_results = search_index.clearn_stop_word(i_search_index_results)  # xóa stop words
                 # data_out.append(i_search_index_results)
                 i_search_index_results = re.findall('\w+', i_search_index_results)  #tách từ thành danh sách
-                print("i_search_index_results")
-                print(i_search_index_results)
+                # print("i_search_index_results")
+                # print(i_search_index_results)
                 kq += i_search_index_results #chuyển list thành chuỗi
                 kq_for_tfi.append(i_search_index_results)
             else:
-                print("**********j%2 != 0")
-                print(search_index_results[i][j])
+                # print("**********j%2 != 0")
+                # print(search_index_results[i][j])
                 data_out.append(search_index_results[i][j])
-    print('===========kq=====')
-    print(kq)
-    print('===========kq set=====')
-    kq_set = set(kq)  # mảng lưu từ sau khi loại bỏ từ trùng
-    print(kq_set)
-    print('===========data out=====')
-    print(data_out)
-    # return (kq_set, data_out, kq_for_tfi)
+
+    kq_set = set(kq)  # mảng lưu từ sau khi loại bỏ từ trùngprint('===========kq=====')
+    # print(kq)
+    # print('===========kq set=====')
+    # print(kq_set)
+    # print('===========data out=====')
+    # print(data_out)
+    return (kq_set, data_out, kq_for_tfi)
 
 
 # tfi
@@ -68,7 +68,7 @@ def calculated_dfi(tfi):
                 if tfi[word_count][counts] > 0:
                     sum += 1
             dfi.append(sum)
-    print('dfi: số lượng từ xuất hiện trong tài liệu')
+    # print('***********dfi: số lượng từ xuất hiện trong tài liệu')
     return dfi
 
 
@@ -113,7 +113,7 @@ def calculated_wi(idfi, tfi):
 
 
 # similarity
-def similarity(wi, results):
+def similarity(wi, search_index_results):
     ''' Tính độ tương đồng của câu'''
     if len(wi) <= 0:
         print("Array WI NO data!")
@@ -136,7 +136,7 @@ def similarity(wi, results):
         for m in range(len(arr_qd)):  # tinh goc cosin = q*d / (q2 * d2)
             tmp = []
             rs = arr_qd[m] / (arr[0] * arr[m + 1])
-            tmp.append(results[m + 1])
+            tmp.append(search_index_results[m + 1])
             tmp.append(round(rs, 4))
             cosin.append(tmp)
         # format arr cosin : [['câu hỏi', giá trị cosin], ['câu hỏi', giá trị cosin]]
@@ -154,9 +154,12 @@ def choose_document(cosin):
 
 
 def print_document(choose_doc):
-    for i in choose_doc:
-        for j in i:
-            print(j)
+    for i in range(len(choose_doc)):
+        for j in range(len(choose_doc[i])):
+            if j == 1:
+                print(choose_doc[i][j])
+            else:
+                print(choose_doc[i][j][1])
 
 
 def output():
@@ -173,32 +176,35 @@ def output():
         print('Số lượng document sau khi tìm kiếm là: %d' % (len(search_index_results) - 1))
         print(search_index_results)
         format_data(search_index_results)
-        # kq_set, data_out, kq_for_tfi = format_data(search_index_results)
-        # print('kq_set')
-        # print(kq_set)
-        # print('data_out: mang luu tru du lieu cua tung tai lieu ke ca query')
-        # print(data_out)
-        # print('DO DAI MANG DATA OUT')
-        # print(len(data_out))
-        # tfi = calculated_tfi(kq_set, kq_for_tfi)
-        # print('tfi')
-        # print(tfi)
-        # dfi = calculated_dfi(tfi)
-        # print('dfi')
-        # print(dfi)
-        # print(len(dfi))
-        # idfi = calculated_idfi(dfi, data_out)
-        # print('idfi')
-        # print(idfi)
-        # wi = calculated_wi(idfi, tfi)
-        # print('wi')
-        # print(len(wi))
-        # print(wi)
-        # cosin = similarity(wi, results)
-        # print(cosin)
-        # choose_doc = choose_document(cosin)
-        # print('Các Document được chọn là: ')
-        # print_document(choose_doc)
+        kq_set, data_out, kq_for_tfi = format_data(search_index_results)
+        print('==============kq_set')
+        print(kq_set)
+        print('===============data_out: mang luu tru du lieu cua tung tai lieu ke ca query')
+        print(data_out)
+        print('=================DO DAI MANG DATA OUT')
+        print(len(data_out))
+        print('=================kq for tfi')
+        print(len(kq_for_tfi))
+        print(kq_for_tfi)
+        tfi = calculated_tfi(kq_set, kq_for_tfi)
+        print('==================tfi')
+        print(tfi)
+        dfi = calculated_dfi(tfi)
+        print('=============dfi')
+        print(dfi)
+        print(len(dfi))
+        idfi = calculated_idfi(dfi, data_out)
+        print('=================idfi')
+        print(idfi)
+        wi = calculated_wi(idfi, tfi)
+        print('wi')
+        print(len(wi))
+        print(wi)
+        cosin = similarity(wi, search_index_results)
+        print(cosin)
+        choose_doc = choose_document(cosin)
+        print('Các Document được chọn là: ')
+        print_document(choose_doc)
 
 
 # GUI
@@ -229,6 +235,6 @@ def format_output(query):
 
 
 if __name__ == '__main__':
-    # Quy chế tuyển sinh 2017 vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
+    #  Quy chế tuyển sinh 2017vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
     # Cho em hỏi là điểm thi đại học của em dưới điểm sàn thì có được nộp nguyện vọng 2 vào các trường cao đẳng không ?
     output()
