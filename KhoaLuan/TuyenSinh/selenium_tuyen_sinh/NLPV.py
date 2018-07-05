@@ -87,7 +87,7 @@ if __name__ == '__main__':
     for n in b.date:
         print(n)
     word_data.import_data()
-    print('Da luu du lieu vao database')
+    print('Database saved')
 
 
 

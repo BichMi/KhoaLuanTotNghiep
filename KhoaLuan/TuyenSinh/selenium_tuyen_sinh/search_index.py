@@ -122,9 +122,9 @@ def search_index_main01():
     s = clearn_stop_word(tokens)
     print('**************************')
     print(s)
-    # indexing()
-    results_search_main = search_documents(s)
-    return results_search_main
+    indexing()
+    main = search_documents(s)
+    return main
 
 
 if __name__ == '__main__':
@@ -144,5 +144,3 @@ if __name__ == '__main__':
                         print("=======================================")
                         print("\nCâu trả lời: ", j)
                         print(kq[j][item])
-
-# Quy chế tuyển sinh Đại học, Cao đẳng năm 2018 ?
