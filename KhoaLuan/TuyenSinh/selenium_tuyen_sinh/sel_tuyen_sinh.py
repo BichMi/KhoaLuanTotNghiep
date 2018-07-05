@@ -18,14 +18,14 @@ class SelTuyenSinh:
         '''Rút trích dữ liệu trang web thông tin tuyển sinh'''
         print("Trang web Thông Tin Tuyển Sinh")
         driver.get("http://hoidap.thongtintuyensinh.vn")
-        time.sleep(10)
+
         driver.find_element_by_id("tli_1").click()#click Điểm chuẩn, nguyện vọng
         client = MongoClient('mongodb://localhost:27017/')#kết nối MongoDB
         db = client.DBTuyenSinh  # tao ket noi tới DB
         collection = db.AnswerQuestion
 
         for i in range(1, 11):
-            time.sleep(5)
+
             print("Page: " + str(i))
             list_ids = []
             list_answers = []

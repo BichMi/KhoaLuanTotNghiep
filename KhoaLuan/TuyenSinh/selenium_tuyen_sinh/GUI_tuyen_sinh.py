@@ -14,9 +14,14 @@ def search():
         outputLb.insert(END, "Không có kết quả phù hợp\n")
 
     elif len(kq) <= 2:
-        for k in kq:
-            for h in k:
-                outputLb.insert(END, h)
+        for j in range(len(kq)):
+            if j == 0:
+                outputLb.insert(END, 'Tiền sử lý câu truy vấn:\n')
+                outputLb.insert(END, kq[j])
+
+
+            else:
+                outputLb.insert(END, kq[j])
                 outputLb.insert(END, '\n')
     else:
         for i in range(len(kq)):
@@ -24,9 +29,11 @@ def search():
                 if j == 1:
                     outputLb.insert(END, kq[i][j])
                     outputLb.insert(END, '\n')
+                    outputLb.insert(END, '==============================\n')
                 else:
                     outputLb.insert(END, kq[i][j][1])
                     outputLb.insert(END, '\n')
+                    outputLb.insert(END, '==============================\n')
 
 
 

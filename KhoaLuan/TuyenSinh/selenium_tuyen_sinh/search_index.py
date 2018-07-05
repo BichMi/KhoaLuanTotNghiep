@@ -110,7 +110,7 @@ def search_index_main(query):
     question_input = re.sub(r"(\s{2,})", '', question_input)
     tokens = word_separation(question_input)
     s = clearn_stop_word(tokens)
-    # indexing()
+    indexing()
     results_search_main = search_documents(s)
     return results_search_main
 
@@ -138,8 +138,11 @@ if __name__ == '__main__':
             if j == 0:
                 print('Tiền xử lý câu truy vấn: ', kq[j])
             else:
-                print("KẾT QUẢ \n")
-                for item in kq[j]:
-                    print(item)
+
+                for item in range(len(kq[j])):
+                    if item % 2 != 0:
+                        print("=======================================")
+                        print("\nCâu trả lời: ", j)
+                        print(kq[j][item])
 
 # Quy chế tuyển sinh Đại học, Cao đẳng năm 2018 ?

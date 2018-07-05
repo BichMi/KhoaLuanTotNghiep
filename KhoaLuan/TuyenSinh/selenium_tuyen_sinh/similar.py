@@ -157,8 +157,10 @@ def print_document(choose_doc):
     for i in range(len(choose_doc)):
         for j in range(len(choose_doc[i])):
             if j == 1:
+                print('====================================\n')
                 print(choose_doc[i][j])
             else:
+                print('====================================\n')
                 print(choose_doc[i][j][1])
 
 
@@ -169,39 +171,40 @@ def output():
     elif len(search_index_results) <= 2:
         for j in range(len(search_index_results)):
             if j == 0:
-                print('Tiền xử lý câu truy vấn: ', search_index_results[j])
+                print('Tiền xử lý câu truy vấn: ', search_index_results[j][0])
             else:
-                print(search_index_results[j])
+                print('===================================\n')
+                print(search_index_results[j][1])
     else:
-        print('Số lượng document sau khi tìm kiếm là: %d' % (len(search_index_results) - 1))
-        print(search_index_results)
+        # print('Số lượng document sau khi tìm kiếm là: %d' % (len(search_index_results) - 1))
+        # print(search_index_results)
         format_data(search_index_results)
         kq_set, data_out, kq_for_tfi = format_data(search_index_results)
-        print('==============kq_set')
-        print(kq_set)
-        print('===============data_out: mang luu tru du lieu cua tung tai lieu ke ca query')
-        print(data_out)
-        print('=================DO DAI MANG DATA OUT')
-        print(len(data_out))
-        print('=================kq for tfi')
-        print(len(kq_for_tfi))
-        print(kq_for_tfi)
+        # print('==============kq_set')
+        # print(kq_set)
+        # print('===============data_out: mang luu tru du lieu cua tung tai lieu ke ca query')
+        # print(data_out)
+        # print('=================DO DAI MANG DATA OUT')
+        # print(len(data_out))
+        # print('=================kq for tfi')
+        # print(len(kq_for_tfi))
+        # print(kq_for_tfi)
         tfi = calculated_tfi(kq_set, kq_for_tfi)
-        print('==================tfi')
-        print(tfi)
+        # print('==================tfi')
+        # print(tfi)
         dfi = calculated_dfi(tfi)
-        print('=============dfi')
-        print(dfi)
-        print(len(dfi))
+        # print('=============dfi')
+        # print(dfi)
+        # print(len(dfi))
         idfi = calculated_idfi(dfi, data_out)
-        print('=================idfi')
-        print(idfi)
+        # print('=================idfi')
+        # print(idfi)
         wi = calculated_wi(idfi, tfi)
-        print('wi')
-        print(len(wi))
-        print(wi)
+        # print('wi')
+        # print(len(wi))
+        # print(wi)
         cosin = similarity(wi, search_index_results)
-        print(cosin)
+        # print(cosin)
         choose_doc = choose_document(cosin)
         print('Các Document được chọn là: ')
         print_document(choose_doc)
@@ -235,6 +238,6 @@ def format_output(query):
 
 
 if __name__ == '__main__':
-    #  Quy chế tuyển sinh 2017vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
+    #  Quy chế tuyển sinh 2018 vừa được Bộ Giáo dục Đào tạo ban hành có những điểm gì mới so với năm trước ?
     # Cho em hỏi là điểm thi đại học của em dưới điểm sàn thì có được nộp nguyện vọng 2 vào các trường cao đẳng không ?
     output()
