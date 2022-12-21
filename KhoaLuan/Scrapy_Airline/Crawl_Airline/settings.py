@@ -7,6 +7,7 @@
 # Test branch3 
 # Test branch 4
 # Test branch 5
+# Test branch 6
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
 #
